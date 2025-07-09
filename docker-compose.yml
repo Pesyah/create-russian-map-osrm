@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  osrm-extract:
+    image: ghcr.io/project-osrm/osrm-backend
+    command: osrm-extract -p /app/profiles/car.lua /app/data/russia-latest.osm.pbf
+    volumes:
+      - ./:/app
+
+  osrm-partition:
+    image: ghcr.io/project-osrm/osrm-backend
+    command: osrm-partition /app/data/russia-latest.osm.pbf
+    volumes:
+      - ./:/app
+
+
+  osrm-customize:
+    image: ghcr.io/project-osrm/osrm-backend
+    command: osrm-customize /app/data/russia-latest.osm.pbf
+    volumes:
+      - ./:/app
+
+  osrm-routed:
+    image: ghcr.io/project-osrm/osrm-backend
+    command: osrm-routed --algorithm mld /app/data/russia-latest.osrm
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/app

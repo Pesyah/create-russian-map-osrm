@@ -5,8 +5,9 @@
 ## 📁 Шаг 1 — Подготовка карты
 
 1. Создайте папку `data` в корне проекта:
+
 ```bash
-   mkdir data
+mkdir data
 ```
 
 2. Скачайте файл карты в формате `.osm.pbf`  
@@ -23,16 +24,24 @@
 Выполните последовательно следующие команды:
 
 ```bash
-    docker-compose up osrm-extract
-    docker-compose up osrm-partition
-    docker-compose up osrm-customize
+docker-compose up osrm-extract
+```
+
+```bash
+docker-compose up osrm-partition
+```
+
+```bash
+docker-compose up osrm-customize
 ```
 
 🚀 Шаг 3 — Запуск сервера
 
 Запустите маршрутизатор OSRM:
+
 ```bash
 docker-compose up osrm-routed
 ```
+
 После запуска сервер будет доступен по адресу:
 👉 http://localhost:5000
